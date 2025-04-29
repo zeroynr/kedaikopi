@@ -38,8 +38,7 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Nomor Meja : </label></div>
-                                <div class="col-12 col-md-9"> <label><?= $b['id_meja'] ?></label></div>
-
+                                <div class="col-12 col-md-9"> <label><?= $b['nomor_meja'] ?></label></div>
                             </div>
                             <div class="row form-group">
                                 <div class="col col-md-3"><label for="textarea-input" class=" form-control-label">Nama Pemesan : </label></div>

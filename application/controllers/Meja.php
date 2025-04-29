@@ -32,11 +32,12 @@ class Meja extends CI_Controller
     </div>');
         redirect('meja');
     }
-
     public function index()
     {
         $data['title'] = 'Dashboard Pegawai';
         $data['meja'] = $this->Meja_model->get_meja();
+        $data['meja_indoor'] = $this->Meja_model->get_meja_by_lokasi('indoor');
+        $data['meja_outdoor'] = $this->Meja_model->get_meja_by_lokasi('outdoor');
         $this->load->view('admin/layout/header', $data);
         $this->load->view('admin/layout/side');
         $this->load->view('admin/layout/side-header');
@@ -44,6 +45,20 @@ class Meja extends CI_Controller
         $this->load->view('admin/layout/footer');
     }
 
+    // Tambahkan fungsi ini di controller Meja
+    public function update_lokasi_meja_existing()
+    {
+        // Fungsi ini hanya perlu dijalankan sekali untuk memperbarui data yang sudah ada
+        $this->db->query("UPDATE meja SET lokasi = 'indoor' WHERE CAST(nomor_meja AS UNSIGNED) <= 8");
+        $this->db->query("UPDATE meja SET lokasi = 'outdoor' WHERE CAST(nomor_meja AS UNSIGNED) > 8");
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
+    Sukses memperbarui lokasi meja yang sudah ada
+    </div>');
+        redirect('meja');
+    }
+
+    // Modifikasi tambah() untuk mendukung lokasi
     public function tambah()
     {
         $this->form_validation->set_rules(
@@ -55,6 +70,7 @@ class Meja extends CI_Controller
             )
         );
         $this->form_validation->set_rules('kapasitas', 'kapasitas', 'numeric|required');
+        $this->form_validation->set_rules('lokasi', 'lokasi', 'required');
 
         if ($this->form_validation->run() == FALSE) {
             $this->session->set_flashdata('error', validation_errors());
@@ -62,10 +78,23 @@ class Meja extends CI_Controller
         } else {
             $this->Meja_model->tambah_meja();
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            Sukses Menambah Data Meja
-            </div>');
+        Sukses Menambah Data Meja
+        </div>');
             redirect('meja');
         }
+    }
+
+    // Tambahkan fungsi untuk menampilkan visualisasi meja
+    public function visualisasi()
+    {
+        $data['title'] = 'Visualisasi Meja';
+        $data['meja_indoor'] = $this->Meja_model->get_meja_by_lokasi('indoor');
+        $data['meja_outdoor'] = $this->Meja_model->get_meja_by_lokasi('outdoor');
+        $this->load->view('admin/layout/header', $data);
+        $this->load->view('admin/layout/side');
+        $this->load->view('admin/layout/side-header');
+        $this->load->view('admin/meja/visualisasi');
+        $this->load->view('admin/layout/footer');
     }
 
     public function edit()

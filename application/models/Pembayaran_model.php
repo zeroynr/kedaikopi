@@ -1,4 +1,3 @@
-
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
@@ -28,8 +27,11 @@ class pembayaran_model extends CI_Model
 
     public function getBookingById($id)
     {
-
-        $query = $this->db->query("SELECT * FROM booking WHERE id_booking = $id");
+        // Modifikasi query untuk mengambil nomor_meja dari tabel meja
+        $query = $this->db->query("SELECT booking.*, meja.nomor_meja 
+                                  FROM booking 
+                                  LEFT JOIN meja ON booking.id_meja = meja.id_meja 
+                                  WHERE booking.id_booking = $id");
         return $query->result_array();
     }
 

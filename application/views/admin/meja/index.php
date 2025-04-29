@@ -36,7 +36,6 @@
                     <div class="mb-3">
                         <button class="btn btn-primary" data-toggle="modal" data-target="#tambahmejamodal"><i class="fa fa-plus"></i> Tambah Meja</button>
 
-                        <!-- Tombol baru untuk mengaktifkan/menonaktifkan semua meja -->
                         <div class="btn-group ml-2">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fa fa-tasks"></i> Kelola Status Semua Meja
@@ -46,6 +45,8 @@
                                 <a class="dropdown-item" href="<?= base_url() ?>meja/deactivate_all_tables" onclick="return confirm('Apakah Anda yakin ingin menonaktifkan SEMUA meja menjadi tidak tersedia?');">Nonaktifkan Semua Meja</a>
                             </div>
                         </div>
+
+                        <a href="<?= base_url() ?>meja/visualisasi" class="btn btn-info ml-2"><i class="fa fa-map"></i> Lihat Visualisasi Meja</a>
                     </div>
 
                     <div class="table-responsive">
@@ -89,7 +90,6 @@
                                                     <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Apakah Anda yakin ingin mengubah status meja menjadi tersedia?');">Set Tersedia</button>
                                                 </form>
                                             <?php endif; ?>
-
                                             <a href="<?= base_url() ?>meja/hapus/<?= $m['id_meja'] ?>" onclick="return confirm('Apakah Anda Yakin Ingin Menghapus Meja <?= $m['nomor_meja'] ?>?');" class="btn btn-sm btn-danger">Hapus</a>
                                         </td>
                                     </tr>
@@ -105,7 +105,6 @@
     </div>
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="tambahmejamodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -122,6 +121,11 @@
                         <input type="text" class="form-control" placeholder="1A" name="nomor_meja" required>
                         <label>Kapasitas (Orang)</label>
                         <input type="number" min="0" class="form-control" placeholder="0" name="kapasitas" required>
+                        <label>Lokasi</label>
+                        <select class="form-control" name="lokasi" required>
+                            <option value="indoor">Indoor</option>
+                            <option value="outdoor">Outdoor</option>
+                        </select>
                     </div>
             </div>
             <div class="modal-footer">
@@ -149,6 +153,11 @@
                         <input type="hidden" id="idmeja_edit" name="id_meja" required>
                         <label>Kapasitas (Orang)</label>
                         <input type="number" min="0" id="kapasitas_edit" class="form-control" placeholder="0" name="kapasitas_meja" required>
+                        <label>Lokasi</label>
+                        <select class="form-control" name="lokasi" id="lokasi_edit" required>
+                            <option value="indoor">Indoor</option>
+                            <option value="outdoor">Outdoor</option>
+                        </select>
                     </div>
             </div>
             <div class="modal-footer">
@@ -159,7 +168,6 @@
         </div>
     </div>
 </div>
-
 <script>
     function edit_meja(id) {
         $.ajax({
@@ -169,6 +177,7 @@
             success: (hasil) => {
                 document.getElementById("idmeja_edit").value = hasil.id_meja;
                 document.getElementById("kapasitas_edit").value = hasil.kapasitas_meja;
+                document.getElementById("lokasi_edit").value = hasil.lokasi;
                 $('#nomor_meja_title').html(hasil.nomor_meja)
             }
         });

@@ -15,6 +15,88 @@
     </div>
   </section><!-- End Breadcrumbs -->
 
+  <!-- Bagian Visualisasi Meja - Tempatkan ini setelah breadcrumbs dan sebelum formulir pemesanan -->
+  <section id="visualisasi-meja" class="visualisasi-meja pb-2">
+    <div class="container">
+      <div class="section-title">
+        <h2>Visualisasi Ketersediaan Meja</h2>
+        <p>Silakan pilih meja yang tersedia (warna hijau)</p>
+      </div>
+
+      <div class="row">
+        <!-- Area Indoor -->
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Area Indoor</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <?php foreach ($meja_indoor as $meja) : ?>
+                  <div class="col-4 col-md-3 col-lg-2 mb-3">
+                    <div class="text-center">
+                      <div class="meja-seat <?= $meja['status_tersedia'] == 1 ? 'tersedia' : 'tidak-tersedia' ?>"
+                        data-id="<?= $meja['id_meja'] ?>"
+                        data-nomor="<?= $meja['nomor_meja'] ?>"
+                        data-kapasitas="<?= $meja['kapasitas_meja'] ?>"
+                        data-status="<?= $meja['status_tersedia'] ?>"
+                        <?= $meja['status_tersedia'] == 1 ? 'onclick="pilihMeja(this)"' : '' ?>>
+                        <span class="nomor-meja"><?= $meja['nomor_meja'] ?></span>
+                        <span class="kapasitas-meja"><?= $meja['kapasitas_meja'] ?> org</span>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Area Outdoor -->
+        <div class="col-md-6 mb-4">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Area Outdoor</h5>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <?php foreach ($meja_outdoor as $meja) : ?>
+                  <div class="col-4 col-md-3 col-lg-2 mb-3">
+                    <div class="text-center">
+                      <div class="meja-seat <?= $meja['status_tersedia'] == 1 ? 'tersedia' : 'tidak-tersedia' ?>"
+                        data-id="<?= $meja['id_meja'] ?>"
+                        data-nomor="<?= $meja['nomor_meja'] ?>"
+                        data-kapasitas="<?= $meja['kapasitas_meja'] ?>"
+                        data-status="<?= $meja['status_tersedia'] ?>"
+                        <?= $meja['status_tersedia'] == 1 ? 'onclick="pilihMeja(this)"' : '' ?>>
+                        <span class="nomor-meja"><?= $meja['nomor_meja'] ?></span>
+                        <span class="kapasitas-meja"><?= $meja['kapasitas_meja'] ?> org</span>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keterangan status meja -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <div class="d-flex justify-content-center">
+            <div class="mr-4">
+              <span class="status-indicator tersedia"></span> Tersedia
+            </div>
+            <div>
+              <span class="status-indicator tidak-tersedia"></span> Tidak Tersedia
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ======= Contact Us Section ======= -->
   <section id="contact-us" class="contact-us">
     <div class="container">
@@ -118,6 +200,83 @@
       </div>
   </section><!-- End Contact Us Section -->
 
+  <!-- CSS untuk Visualisasi Meja -->
+  <style>
+    .meja-seat {
+      width: 100%;
+      aspect-ratio: 1/1;
+      border-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .tersedia {
+      background-color: #2ecc71;
+      box-shadow: 0 4px 8px rgba(46, 204, 113, 0.3);
+      cursor: pointer;
+    }
+
+    .tersedia:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 12px rgba(46, 204, 113, 0.5);
+    }
+
+    .tidak-tersedia {
+      background-color: #e74c3c;
+      box-shadow: 0 4px 8px rgba(231, 76, 60, 0.3);
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .nomor-meja {
+      font-size: 1.2rem;
+    }
+
+    .kapasitas-meja {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .status-indicator {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+
+    .status-indicator.tersedia {
+      background-color: #2ecc71;
+    }
+
+    .status-indicator.tidak-tersedia {
+      background-color: #e74c3c;
+    }
+
+    .meja-selected {
+      border: 3px solid #3498db;
+      transform: scale(1.1);
+      box-shadow: 0 6px 12px rgba(52, 152, 219, 0.5);
+    }
+
+    .card {
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    .card-header {
+      background-color: #f8f9fa;
+      border-bottom: 1px solid #e9ecef;
+      padding: 12px 15px;
+      font-weight: bold;
+    }
+  </style>
 </main><!-- End #main -->
 
 <script>
@@ -271,6 +430,7 @@
   }
 
   // Fungsi untuk mendapatkan meja yang tersedia
+  // Modifikasi fungsi getMejaTersedia() di halaman pemesanan
   function getMejaTersedia() {
     document.getElementById("id_meja").removeAttribute("disabled", "disabled");
     $.ajax({
@@ -284,10 +444,27 @@
         if (hasil.length === 0) {
           isi = `<option disabled selected value="">Tidak ada meja tersedia</option>`;
         } else {
-          hasil.forEach(function(item) {
-            isi +=
-              `<option value="${item.id_meja}|${item.nomor_meja}">Meja ${item.nomor_meja} (Kapasitas: ${item.kapasitas_meja})</option>`;
-          });
+          // Kelompokkan meja berdasarkan lokasi
+          let mejaIndoor = hasil.filter(item => item.lokasi === 'indoor');
+          let mejaOutdoor = hasil.filter(item => item.lokasi === 'outdoor');
+
+          // Tambahkan grup untuk meja indoor
+          if (mejaIndoor.length > 0) {
+            isi += `<optgroup label="Area Indoor">`;
+            mejaIndoor.forEach(function(item) {
+              isi += `<option value="${item.id_meja}|${item.nomor_meja}">Meja ${item.nomor_meja} (Kapasitas: ${item.kapasitas_meja})</option>`;
+            });
+            isi += `</optgroup>`;
+          }
+
+          // Tambahkan grup untuk meja outdoor
+          if (mejaOutdoor.length > 0) {
+            isi += `<optgroup label="Area Outdoor">`;
+            mejaOutdoor.forEach(function(item) {
+              isi += `<option value="${item.id_meja}|${item.nomor_meja}">Meja ${item.nomor_meja} (Kapasitas: ${item.kapasitas_meja})</option>`;
+            });
+            isi += `</optgroup>`;
+          }
         }
 
         $('#id_meja').html(isi);
@@ -481,4 +658,92 @@
       $('#total_harga').html(total_harga_teks);
     }
   }
+
+  // Fungsi untuk memilih meja dari visualisasi
+  function pilihMeja(element) {
+    // Reset tampilan meja terpilih
+    document.querySelectorAll('.meja-seat.tersedia').forEach(el => {
+      el.classList.remove('meja-selected');
+    });
+
+    // Tambahkan kelas selected pada meja yang diklik
+    element.classList.add('meja-selected');
+
+    // Ambil data meja
+    const idMeja = element.getAttribute('data-id');
+    const nomorMeja = element.getAttribute('data-nomor');
+    const kapasitasMeja = element.getAttribute('data-kapasitas');
+
+    // Set nilai pada dropdown form
+    const selectMeja = document.getElementById('id_meja');
+    const options = selectMeja.options;
+
+    // Cari opsi yang sesuai dengan meja yang dipilih
+    for (let i = 0; i < options.length; i++) {
+      const value = options[i].value;
+      if (value && value.split('|')[0] === idMeja) {
+        selectMeja.selectedIndex = i;
+        // Simulasi onchange event untuk memicu fungsi tambah_meja()
+        const event = new Event('change');
+        selectMeja.dispatchEvent(event);
+        break;
+      }
+    }
+
+    // Scroll ke form pemesanan
+    document.getElementById('contact-us').scrollIntoView({
+      behavior: 'smooth'
+    });
+  }
+
+  // Fungsi untuk menandai visualisasi meja ketika dipilih lewat dropdown
+  function updateVisualMeja(idMeja) {
+    // Reset tampilan meja terpilih
+    document.querySelectorAll('.meja-seat.tersedia').forEach(el => {
+      el.classList.remove('meja-selected');
+    });
+
+    // Cari dan tandai meja yang dipilih dari dropdown
+    if (idMeja) {
+      const selectedMeja = document.querySelector(`.meja-seat[data-id="${idMeja}"]`);
+      if (selectedMeja) {
+        selectedMeja.classList.add('meja-selected');
+      }
+    }
+  }
+
+  // Override fungsi tambah_meja untuk integrasi dengan visualisasi
+  const originalTambahMeja = window.tambah_meja;
+  window.tambah_meja = function(value) {
+    // Jalankan fungsi asli
+    originalTambahMeja(value);
+
+    // Update visualisasi jika ada nilai
+    if (value) {
+      const splitMeja = value.split("|");
+      if (splitMeja.length >= 1) {
+        let id_meja = splitMeja[0];
+        updateVisualMeja(id_meja);
+      }
+    } else {
+      // Reset visual jika tidak ada nilai
+      updateVisualMeja(null);
+    }
+  };
+
+  // Tambahkan listener untuk dropdown meja
+  document.addEventListener('DOMContentLoaded', function() {
+    const selectMeja = document.getElementById('id_meja');
+    if (selectMeja) {
+      selectMeja.addEventListener('change', function() {
+        const value = this.value;
+        if (value) {
+          const idMeja = value.split('|')[0];
+          updateVisualMeja(idMeja);
+        } else {
+          updateVisualMeja(null);
+        }
+      });
+    }
+  });
 </script>

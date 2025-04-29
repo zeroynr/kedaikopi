@@ -39,30 +39,43 @@ class Meja_model extends CI_Model
         return $query->result_array();
     }
 
+    // Fungsi untuk mendapatkan meja berdasarkan lokasi
+    public function get_meja_by_lokasi($lokasi)
+    {
+        $this->db->where('lokasi', $lokasi);
+        $this->db->order_by('nomor_meja', 'ASC');
+        $query = $this->db->get('meja');
+        return $query->result_array();
+    }
+
+    // Tambahkan parameter lokasi pada fungsi tambah_meja
     public function tambah_meja()
     {
         $data = [
             'nomor_meja' => htmlspecialchars($this->input->post('nomor_meja', true)),
             'kapasitas_meja' => htmlspecialchars($this->input->post('kapasitas', true)),
             'status_tersedia' => 1, // Default tersedia
+            'lokasi' => htmlspecialchars($this->input->post('lokasi', true))
         ];
         $this->db->insert('meja', $data);
     }
 
+    // Modifikasi fungsi edit_meja untuk mendukung perubahan lokasi
     public function edit_meja()
     {
         $data = [
-            "kapasitas_meja" => $this->input->post('kapasitas_meja', true)
+            "kapasitas_meja" => $this->input->post('kapasitas_meja', true),
         ];
+
+        // Jika ada perubahan lokasi
+        if ($this->input->post('lokasi')) {
+            $data["lokasi"] = $this->input->post('lokasi', true);
+        }
+
         $this->db->where('id_meja', $this->input->post('id_meja'));
         $this->db->update('meja', $data);
     }
 
-    public function hapus_meja($id)
-    {
-        $this->db->where('id_meja', $id);
-        $this->db->delete('meja');
-    }
 
     public function get_meja_by_id($id)
     {

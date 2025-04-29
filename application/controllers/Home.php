@@ -62,8 +62,10 @@ class Home extends CI_Controller
     {
         $this->load->model('Meja_model');
         $this->load->model('Makanan_model');
+        $this->load->model('Meja_model');
 
         $profil = $this->getProfilUsaha();
+        $data['title'] = 'Pemesanan Menu';
         $data['nama_usaha'] = $profil['nama_usaha'];
         $data['deskripsi'] = $profil['deskripsi'];
         $data['alamat'] = $profil['alamat'];
@@ -74,10 +76,19 @@ class Home extends CI_Controller
         $data['maps_link'] = $profil['maps_link'];
 
         $data['menu'] = $this->Makanan_model->getMakananTersedia();
+        $data['meja_indoor'] = $this->Meja_model->get_meja_by_lokasi('indoor');
+        $data['meja_outdoor'] = $this->Meja_model->get_meja_by_lokasi('outdoor');
 
         $this->load->view('home/layout/header', $data);
         $this->load->view('home/pemesanan');
         $this->load->view('home/layout/footer');
+    }
+
+    public function get_meja_info($id_meja)
+    {
+        $this->load->model('Meja_model');
+        $meja = $this->Meja_model->get_meja_by_id($id_meja);
+        echo json_encode($meja);
     }
 
     public function getMejaKosong($tanggal)
