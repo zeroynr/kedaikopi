@@ -1,28 +1,38 @@
-# Gunakan image PHP resmi
-FROM php:8.1-cli
+# Gunakan image PHP resmi dengan Apache
+FROM php:8.1-apache
 
-# Install dependensi tambahan
-RUN apt-get update && apt-get install -y \
-    unzip \
-    libzip-dev \
-    zip \
-    curl \
-    && docker-php-ext-install zip
+# Instal ekstensi yang dibutuhkan CI3 (bisa ditambah sesuai kebutuhan)
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
-# Salin Composer dari image composer resmi
+# Aktifkan mod_rewrite Apache untuk CodeIgniter
+RUN a2enmod rewrite
+
+# Set working directory di dalam container
+WORKDIR /var/www/html
+
+# Salin semua file ke dalam container
+COPY . /var/www/html
+
+# Salin file .htaccess jika ada
+COPY .htaccess /var/www/html/.htaccess
+
+# Ubah permission agar folder writable bisa digunakan
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 755 /var/www/html
+
+# Instal Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Set direktori kerja
-WORKDIR /app
+# Jalankan composer install
+RUN composer install --no-interaction --no-dev --optimize-autoloader
 
-# Copy semua file ke container
-COPY . .
+# Konfigurasi Apache agar URL-friendly (tanpa index.php)
+RUN echo "<Directory /var/www/html>\n\
+    AllowOverride All\n\
+</Directory>" >> /etc/apache2/apache2.conf
 
-# Install dependency Composer
-RUN composer install --ignore-platform-reqs
+# Expose port 80
+EXPOSE 80
 
-# Ekspose port Railway
-EXPOSE 3000
-
-# Jalankan server PHP
-CMD ["php", "-S", "0.0.0.0:3000", "-t", "."]
+# Start Apache
+CMD ["apache2-foreground"]
