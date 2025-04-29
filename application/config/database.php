@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'mysql.railway.internal',
 	'username' => 'root',
-	'password' => '',
-	'database' => 'db_kedaikopi',
+	'password' => 'qzMYqDSEhkpSivlDxaQhuzmoZgFRCqtp',
+	'database' => 'railway',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
