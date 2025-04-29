@@ -1,5 +1,5 @@
 # Gunakan PHP 7.4 dengan Apache, sesuai dengan yang ada di composer.json
-FROM php:7.4-apache
+FROM php:7.3-apache
 
 # Instal ekstensi yang dibutuhkan oleh CodeIgniter
 RUN docker-php-ext-install mysqli pdo pdo_mysql
