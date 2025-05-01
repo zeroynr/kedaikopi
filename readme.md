@@ -1,38 +1,51 @@
-# Poster kedai kopi
-![Kopine](https://github.com/user-attachments/assets/4cbc4c93-b0e3-48c1-9977-231d6fc17555)
-# Kedai Kopi
+# ☕ Kedai Kopi
 
-**Kedai Kopi** adalah sebuah platform website berbasis CodeIgniter 3 yang dikembangkan untuk mendukung pertumbuhan bisnis kopi, khususnya untuk skala **Usaha Mikro, Kecil, dan Menengah (UMKM)**. Dengan fitur manajemen operasional yang lengkap, Kedai Kopi membantu pemilik usaha dalam mengelola transaksi, pembayaran, hingga laporan penjualan secara lebih efektif dan efisien.
+![Poster Kedai Kopi](https://github.com/user-attachments/assets/1e7540e6-7e2e-446d-b0c2-cf57f05f1a09)
 
-Website ini menyediakan akses terpisah untuk tiga tipe pengguna, yaitu **Admin**, **Pegawai**, dan **User**, sehingga mempermudah pengelolaan sesuai peran masing-masing.
+**Kedai Kopi** adalah sebuah platform website berbasis **CodeIgniter 3** yang dikembangkan untuk mendukung pertumbuhan bisnis kopi, khususnya skala **Usaha Mikro, Kecil, dan Menengah (UMKM)**. Dengan fitur manajemen operasional yang lengkap, Kedai Kopi membantu pemilik usaha dalam mengelola **transaksi**, **pembayaran**, hingga **laporan penjualan** secara efektif dan efisien.
 
-## Fitur Utama
+Website ini menyediakan akses **multi-role**: **Admin**, **Pegawai**, dan **User** — sehingga pengelolaan sistem menjadi lebih terstruktur sesuai peran masing-masing.
 
-- **UI Interaktif:**  
-  Tampilan modern dan responsif menggunakan Bootstrap 4, mendukung pengalaman pengguna di berbagai perangkat.
+---
 
-- **Grafik Pendapatan & Penjualan:**  
-  Menyajikan data keuangan dalam bentuk grafik yang informatif untuk memudahkan pemantauan performa bisnis.
+## 🔗 Link Website
 
-- **Manajemen Pembayaran:**  
-  Sistem pencatatan pembayaran yang rapi untuk setiap transaksi pelanggan.
+- 🌐 **Link Utama:** [https://posc.kedaikopiteam.biz.id/](https://posc.kedaikopiteam.biz.id/)
+- 🛰️ **Link Alternatif:** [https://kedaikopi-production.up.railway.app/](https://kedaikopi-production.up.railway.app/)
 
-- **Manajemen Laporan Penjualan:**  
-  Menyediakan laporan penjualan berdasarkan hari, bulan, hingga tahun untuk analisa bisnis yang lebih akurat.
+---
 
-- **Role Akses Pengguna:**
-  - **Admin:** Mengelola data pegawai, menu, metode pembayaran, dan konfigurasi seleruh sistem.
-  - **Pegawai:** Mengelola transaksi, Mengelola meja, laporan keuangan dan pembayaran pelanggan.
-  - **User:** Melihat daftar menu, profil kedai, kritik & saran dan melakukan pemesanan.
+## 🚀 Fitur Utama
 
-## Teknologi yang Digunakan
+- 🎨 **UI Interaktif**  
+  Tampilan modern dan responsif menggunakan **Bootstrap 4**, mendukung pengalaman pengguna di berbagai perangkat.
 
-- **Framework:** CodeIgniter 3
-- **Frontend:** Bootstrap 4
-- **Database:** MySQL
-- **Visualisasi Data:** Chart.js
+- 📈 **Grafik Pendapatan & Penjualan**  
+  Visualisasi data keuangan dengan **Chart.js** untuk memantau performa bisnis.
 
-## Instalasi
+- 💳 **Manajemen Pembayaran**  
+  Sistem pencatatan transaksi pelanggan yang terorganisir.
+
+- 🧾 **Laporan Penjualan**  
+  Laporan berdasarkan hari, bulan, hingga tahun untuk analisis bisnis.
+
+- 🧑‍💻 **Role Akses Pengguna**  
+  - 👑 **Admin:** Mengelola data pegawai, menu, metode pembayaran, dan konfigurasi sistem.  
+  - 👨‍🍳 **Pegawai:** Mengelola transaksi, meja, laporan, dan pembayaran pelanggan.  
+  - 👥 **User:** Melihat menu, profil kedai, mengirim kritik & saran, serta melakukan pemesanan.
+
+---
+
+## 🛠️ Teknologi yang Digunakan
+
+- **Framework:** CodeIgniter 3  
+- **Frontend:** Bootstrap 4  
+- **Database:** MySQL  
+- **Visualisasi:** Chart.js
+
+---
+
+## 📥 Instalasi
 
 Untuk menjalankan proyek ini di server lokal, ikuti langkah-langkah berikut:
 
@@ -55,8 +68,9 @@ Untuk menjalankan proyek ini di server lokal, ikuti langkah-langkah berikut:
    http://localhost/kedai-kopi
    ```
 
-## Profil Developer Kelompok 4
+---
 
+## 👥 Profil Developer - Kelompok 4
 1. YAYANG BARRU AFRIZA	      (23050974041)
 2. MOCHAMAD NAZRIL ILHAM	    (23050974049)
 3. MUHAMMAD RIDHO ARDIANSYAH	(23050974059)
@@ -67,18 +81,22 @@ Melalui pengembangan ini, kami berharap dapat memberikan solusi nyata untuk mend
 Untuk mengenal lebih jauh tentang program studi kami, silakan kunjungi laman resmi: [Pendidikan Teknologi Informasi](https://pendidikan-ti.ft.unesa.ac.id/) bagian dari 
 [Fakultas Teknik](https://ft.unesa.ac.id/) di [Universitas Negeri Surabaya](https://unesa.ac.id/).
 
+---
 
+## 🖼️ Tangkapan Layar
 
-## Tangkapan Layar
 <img width="960" alt="Screenshot 2025-04-28 235359" src="https://github.com/user-attachments/assets/cca4af22-ec56-4437-a34d-c17ace958000" />
+
 <img width="948" alt="image" src="https://github.com/user-attachments/assets/3312f60a-a55d-455e-af7b-f61e275bacfa" />
 
-## Referensi
+---
 
-Website Kedai Kopi dikembangkan dengan inspirasi dari kebutuhan nyata para pelaku **UMKM** yang membutuhkan sistem sederhana namun kuat untuk mengelola bisnis mereka secara digital. Aplikasi ini bertujuan memberikan solusi praktis agar UMKM dapat berkembang di era teknologi.
+## 📚 Referensi
 
-## Kontak
-
-- **GitHub:** [Kedai Kopi](https://github.com/zeroynr/kedai-kopi)
+Website Kedai Kopi terinspirasi dari kebutuhan nyata para pelaku **UMKM** yang memerlukan sistem digital sederhana namun kuat untuk mendukung kelancaran usaha mereka di era teknologi.
 
 ---
+
+## 📞 Kontak
+
+- 💻 GitHub Repository: [zeroynr/kedai-kopi](https://github.com/zeroynr/kedai-kopi)
